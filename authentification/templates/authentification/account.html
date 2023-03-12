@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% extends 'main.html' %}
+{% load static %}
+
+{% block add_css %}
+<link href="{% static 'authentification/css/register.css' %}" rel="stylesheet"/>
+{% endblock add_css %}
+
+{% block content %}
+
+<div class="bgcouleur" id="header"></div>
+
+<div class="backgroundUser text"> Bonjour <br><br>
+    {{ user.first_name }} {{ user.last_name }}
+</div>
+
+<div class="backgroundMail textMail">
+        {{ user.email }}
+    </div>
+
+{% endblock %}
