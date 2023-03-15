@@ -29,14 +29,21 @@
                     Menu
                     <i class="fas fa-bars ms-1"></i>
                 </button>
+               <form id="user-text-form" class="pos" method="POST" action="{% url 'plantes:searchPlante' %}">
+                                {% csrf_token %}
+                               {% bootstrap_form search_form %}
+                <input class="message btn btn-outline-warning my-2 my-sm-0 " type="submit" value="Chercher">
+                </form>
+                    </div>
+                </div>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="{% url 'plantes:homePlante' %}">Plantes</a></li>
                         {% if user.is_authenticated %}
-                        <li class="nav-item"><a class="nav-link" href="#mesplantes">Mes plantes</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'authentification:logout' %}">Déconnexion</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'authentification:account' %}">Mes plantes</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'authentification:logout' %}">Déconnexion</a></li>
                         {% else %}
-                        <li class="nav-item"><a class="nav-link" href="#plantes">Plantes</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'authentification:login' %}">Connexion</a></li>
                         {% endif %}
 

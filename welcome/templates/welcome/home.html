@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 {% extends 'main.html' %}
-
+{% load static %}
 {% block title %} Page d'accueil {% endblock title %}
 
 {% block header %}
-        <header class="masthead">
+        <header class="masthead mb-2 bg-success text-white">
             <div class="container">
                 <div class="masthead-subheading">Vous avez besoin d'aide pour chérir vos plantes?</div>
                 <div class="masthead-heading text-uppercase">Bienvenue chez Green Mind</div>
@@ -49,4 +49,6 @@
                 </div>
             </div>
         </section>
+
+
     {% endblock content %}

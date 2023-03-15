@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'welcome',
     'django_bootstrap5',
     'authentification',
+    'plantes',
 ]
 
 MIDDLEWARE = [
@@ -65,6 +66,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'plantes.context_processor.search_form'
             ],
         },
     },
@@ -135,10 +137,4 @@ AUTHENTICATION_BACKENDS = ['authentification.backend.EmailBackend']
 LOGIN_URL = "authentification:login"
 LOGIN_REDIRECT_URL = "welcome:homePage"
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = ''
+
