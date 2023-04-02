@@ -66,7 +66,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'plantes.context_processor.search_form'
+                'plantes.context_processor.search_form',
+                'plantes.context_processor.save_form',
             ],
         },
     },
@@ -138,3 +139,6 @@ LOGIN_URL = "authentification:login"
 LOGIN_REDIRECT_URL = "welcome:homePage"
 
 
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'biedermannclaire153@gmail.com'

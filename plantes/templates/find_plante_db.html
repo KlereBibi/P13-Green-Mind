@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+{% extends 'main.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block header %}
+<div class="p-5 bg-success"></div>
+{% endblock header %}
+
+{% block content %}
+{% if plante %}
+    <div class="card text-white bg-success d-flex justify-content-between" style="max-width: 18rem;">
+        <img class="card-img-top">
+        <div class="card text-black text-center">
+            <img src="{{plante.picture}}" style="img-fluid. max-width: 100% height: auto"
+                 alt="Card image cap" class="picture">
+        </div>
+        <div class="card-header text-center">{{ plante.name }}</div>
+        <div class="card-body">
+            <p class="card-text text-center">Entretien: {{ plante.entretien }}</p>
+            <p class="card-text text-center">Exposition: {{ plante.exposition }}</p>
+        </div>
+        <a href="{% url 'plantes:explainPlante' plante_id=plante.id %}" class="btn btn-primary mx-auto col-10 "> En savoir plus </a>
+    </div>
+        {% else %}
+<div class="p-5 textOFF" id="bgcolor">
+    Aucun produit ne correspond à votre recherche
+</div>
+{% endif %}
+{% endblock content %}
