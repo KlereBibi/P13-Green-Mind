@@ -4,23 +4,19 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
-<div class="p-3 mb-2 bg-success text-white">
-    <div class="container px-4 px-lg-5 h-100">
-        <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
-            <div class="col-lg-8">
-                <h1 class="title text-white font-weight-bold message">Enregistrement</h1>
-                <form action="{% url 'authentification:register' %}" method="post"
-                      class="message form title text-white font-weight-bold">
-
-                    {% csrf_token %}
-                    {% bootstrap_form form layout="floating" %}
-
-                    <button type="submit" id="submit" class="message btn btn-outline-warning my-2 my-sm-0">
-                        Soumettre
-                    </button>
-                </form>
-            </div>
+<div class="background">
+    <div class="padForm">
+        <div class="card text-center bg-success" style="width: 25rem">
+            <div class="card-header text-center">Enregistrement</div>
+            <form action="{% url 'authentification:register' %}" method="post" class="mx-auto">
+                {% csrf_token %}
+                {% bootstrap_form register_form layout="floating" %}
+                <button type="submit" class="btn btn-outline-warning my-2 my-sm-0">
+                    Soumettre
+                </button>
+            </form>
         </div>
     </div>
 </div>
+
 {% endblock %}

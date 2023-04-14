@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+{% extends 'main.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+
+
+{% block content %}
+<div class="background">
+    <div class="text-center font-weight-bold text-green ">
+        <p class="titre titrePage"> Ce que nous avons trouvé:</p>
+    </div>
+    <div class="displayed">
+        {% if texte %}
+        <div class="pad">
+            <div class="card text-white bg-success d-flex justify-content-between" style="max-width: 25rem;">
+                <img class="card-img-top">
+                <div class="card text-black text-center">
+                    <img src="{{texte.picture}}" style="img-fluid. max-width: 100% height: auto"
+                         alt="Card image cap" class="picture">
+                </div>
+                <div class="card-header text-center">{{texte.name}}</div>
+                <div class="card-body">
+                    <p class="card-text text-center">{{texte.extrait}}</p>
+                </div>
+                <p class="card-text text-center text-warning">Apprenez en plus sur <a class="text-warning"
+                                                                                      href="{{texte.url}}">Wikipédia</a></br>
+                </p>
+                <div class="card-header text-center">
+                    <a href="{% url 'plantes:allPlante'%}" class="message btn btn-outline-warning my-2 my-sm-0">
+                        Retour</a></div>
+            </div>
+        </div>
+
+
+        {% else %}
+        <div class="padForm">
+            <div class="card text-white bg-success d-flex justify-content-between" style="max-width: 25rem;">
+                <img class="card-img-top">
+                <div class="card text-black text-center">
+                    <img src="{% static '/assets/image/livre.jpg' %}" style="img-fluid. max-width: 100% height: auto"
+                         alt="Card image cap" class="picture">
+                </div>
+                <div class="card-header text-center text-info">Aucun résultat trouvé</div>
+                <div class="card-header text-center">
+                    <a href="{% url 'plantes:allPlante'%}" class="message btn btn-outline-warning my-2 my-sm-0">
+                        Retour</a></div>
+                <div class="text-center text-white">
+                    Nous n'avons trouvé aucun produit correspondant à votre recherche.</br>
+                    Veuillez reformuler ou essayer à nouveau prochainement.</br>
+                    Nous poursuivons nos recherches afin d'enrichir notre base de données.
+                </div>
+            </div>
+
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
+</html>

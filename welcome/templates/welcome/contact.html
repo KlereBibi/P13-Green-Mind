@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'main.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+
+<div class="background">
+    <div class="displayed">
+        <div class="padForm">
+            <div class="card text-center bg-success backgroundCard" style="width: 25rem;">
+                <div class="card-header text-center text-uppercase">Contactez nous</div>
+                <form class="mx-auto" action="{% url 'welcome:contact' user_id=user.id %}" method="post">
+                    {% csrf_token %}
+                    {% bootstrap_form contact_form layout="floating" %}
+                    <div class="pad">
+                        <button type="submit" class="message btn btn-outline-warning my-2 my-sm-0">
+                            Envoyer
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</div>
+

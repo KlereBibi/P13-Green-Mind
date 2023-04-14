@@ -1,0 +1,7 @@
+{% autoescape off %}
+
+    L'utilisateur {{ prenom }} {{ nom }}, joignable au courriel {{ email }}, a posé cette question:
+    Sujet: {{ sujet }},
+    Texte: {{ texte }}
+
+{% endautoescape %}

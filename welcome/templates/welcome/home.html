@@ -3,52 +3,55 @@
 {% load static %}
 {% block title %} Page d'accueil {% endblock title %}
 
-{% block header %}
-        <header class="masthead mb-2 bg-success text-white">
-            <div class="container">
-                <div class="masthead-subheading">Vous avez besoin d'aide pour chérir vos plantes?</div>
-                <div class="masthead-heading text-uppercase">Bienvenue chez Green Mind</div>
-                <a class="btn btn-primary btn-xl text-uppercase" href="{% url 'authentification:register' %}">Rejoignez-nous</a>
-            </div>
-        </header>
-    {% endblock header %}
-
 {% block content %}
-    <section class="page-section" id="services">
-            <div class="container">
-                <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Pourquoi s'inscrire?</h2>
-                    <h3 class="section-subheading text-muted">Green Mind vous offre des</h3>
-                </div>
-                <div class="row text-center">
-                    <div class="col-md-4">
+<div class="background">
+    <div class="card text-center text-white">
+        <div class="bg-image" style="background-image: url({% static '/assets/img/home.jpg' %});height: 200vh">
+            <section class="page-section bg-light.bg-gradient" id="services">
+                <div class="container">
+                    <div class="text-center">
+                        <div class="pad">
+                            <h2 class="section-heading">Bienvenue chez Green Mind !</h2>
+                        </div>
+                        <p class="section-heading">Nous vous aidons à prendre soin de vos plantes ... </br>
+                            afin de prendre soin de vous.</p>
+                        <div class="pad">
+                            <a href="{% url 'authentification:login'%}" class="message btn btn-primary my-2 my-sm-0">
+                                Rejoignez-nous </a>
+                        </div>
+                    </div>
+                    <div class="row text-center">
+                        <div class="col-md-4">
                         <span class="fa-stack fa-4x">
                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
                             <i class="fas fa-solid fa-circle-info fa-stack-1x fa-inverse"></i>
                         </span>
-                        <h4 class="my-3">Informations</h4>
-                        <p class="text-muted">Grâce à sa base de donnée fournit par divers partenariat.</p>
-                    </div>
-                    <div class="col-md-4">
+                            <h4 class="my-3">Informations</h4>
+                            <p class="text-white">Green Mind a une base de donnée interne permettant d'apprendre divers
+                                informations utiles sur les plantes d'intérieurs.</p>
+                        </div>
+                        <div class="col-md-4">
                         <span class="fa-stack fa-4x">
                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
                             <i class="fas fa-solid fa-heart fa-stack-1x fa-inverse"></i>
                         </span>
-                        <h4 class="my-3">Favoris</h4>
-                        <p class="text-muted">Pour enregistrer vos plantes et assurer un suivi personnalisé.</p>
-                    </div>
-                    <div class="col-md-4">
+                            <h4 class="my-3">Favoris</h4>
+                            <p class="text-white">Green Mind vous permet d'enregistrer vos plantes et de leur donner un
+                                petit nom.</p>
+                        </div>
+                        <div class="col-md-4">
                         <span class="fa-stack fa-4x">
                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
                             <i class="fas fa-solid fa-envelope-circle-check fa-stack-1x fa-inverse"></i>
                         </span>
-                        <h4 class="my-3">Rappels personnalisés</h4>
-                        <p class="text-muted">Permettant la réception de mails pour vous rappeler d'arroser vos plantes ou de leur prodiguer des soins.</p>
+                            <h4 class="my-3">Rappels personnalisés</h4>
+                            <p class="text-white">Green Mind envoie des courriels lorsque le temps est venu d'arroser
+                                votre plante.</p>
+                        </div>
                     </div>
-
                 </div>
-            </div>
-        </section>
-
-
-    {% endblock content %}
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock content %}

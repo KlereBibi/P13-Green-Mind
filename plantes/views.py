@@ -4,8 +4,9 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.db import IntegrityError
 from django.views.decorators.http import require_http_methods
-from plantes.forms import SearchPlante, SavePlante, ReminderAsk
+from plantes.forms import SearchPlante, SavePlante
 from plantes.models import Plante, UserPlante, Rappel
+from datetime import date, timedelta
 
 
 def apiwiki(plantesearch):
@@ -156,22 +157,22 @@ def apiwiki(form):
 def find_plante(request):
     form = SearchPlante(request.POST)
     response = apiwiki(form)
-    return render(request, "find_plante.html", context={"texte": response})
+    return render(request, "plantes/find_plante.html", context={"texte": response})
 
 
 def plante(request):
     plante_db = Plante.objects.all()
-    return render(request, "plante.html", context={"all_plantes_db": plante_db})
+    return render(request, "plantes/plante.html", context={"all_plantes_db": plante_db})
 
 
 def explain_plante(request, plante_id):
     plante_explain = Plante.objects.get(pk=plante_id)
-    return render(request, "planteExplain.html", context={"plante": plante_explain})
+    return render(request, "plantes/planteExplain.html", context={"plante": plante_explain})
 
 
 def my_plante(request):
     plante_user_db = UserPlante.objects.all()
-    return render(request, "myPlantes.html", context={"all_plantes_db": plante_user_db})
+    return render(request, "plantes/myPlantes.html", context={"all_plantes_db": plante_user_db})
 
 
 @login_required
@@ -185,14 +186,14 @@ def user_plante(request, plante_id):
             plante_save.append(UserPlante(name=name_plante['name_plante_user'], rappel=name_plante['reminder'], plante=plante, user=request.user))
             UserPlante.objects.bulk_create(plante_save)
             plante_user = UserPlante.objects.get(name=name_plante['name_plante_user'])
-            date_rappel = []
             if name_plante['reminder'] is True:
-                date_rappel.append(Rappel(userplante=plante_user))
-                Rappel.objects.bulk_create(date_rappel)
-            return render(request, "planteSave.html", context={"plante": plante})
+                endate= date.today() + timedelta(days=plante.arrosage)
+                plante_user.date_futur = endate
+                plante_user.save()
+            return render(request, "plantes/planteSave.html", context={"plante": plante})
         except IntegrityError:
             plante = Plante.objects.get(pk=plante_id)
-            return render(request, "planteSave.html", context={"plante": False, "plante_i":plante})
+            return render(request, "plantes/planteSave.html", context={"plante": False, "plante_i":plante})
     else:
         return redirect("welcome:homePage")
 
@@ -207,7 +208,7 @@ def search_plante_db(request):
             plante_db = Plante.objects.get(name=plante_wanted)
         except Plante.DoesNotExist:
             plante_db = None
-        return render(request, "find_plante_db.html", context={"plante": plante_db})
+        return render(request, "plantes/find_plante_db.html", context={"plante": plante_db})
 
 
 def delete(request, plante_user_id):
@@ -219,6 +220,9 @@ def reminder_change(request, plante_user_id):
     plante_user = UserPlante.objects.get(id=plante_user_id)
     if plante_user.rappel is False:
         plante_user.rappel = True
+        plante_user.save()
+        endate = date.today() + timedelta(days=plante_user.plante.arrosage)
+        plante_user.date_futur = endate
         plante_user.save()
     else:
         plante_user.rappel=False

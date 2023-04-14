@@ -9,5 +9,5 @@ class User(AbstractUser, PermissionsMixin):
 
     """class initializing the user table in the database"""
 
-    email = models.EmailField(unique=True)
+    email = models.EmailField(unique=True, max_length=150)
 

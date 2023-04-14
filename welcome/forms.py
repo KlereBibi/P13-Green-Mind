@@ -1,8 +1,13 @@
+""""module to initialize the search form"""
+
 from django import forms
 
 
-class SearchPlante(forms.Form):
+class ContactForm(forms.Form):
 
     """"class to initialize the search form"""
 
-    plantes = forms.CharField(max_length=100)
+    subject = forms.CharField(label="Sujet", max_length=50, required=True, strip=False)
+    text = forms.CharField(label="Une question?", max_length=300, required=True, strip=False)
+
+

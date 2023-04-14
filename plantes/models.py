@@ -33,7 +33,7 @@ class UserPlante (models.Model):
 
 class Rappel (models.Model):
 
-    emailDate = models.DateField()
+    emailDate = models.DateField(default=datetime.date.today)
     userplante = models.ForeignKey(UserPlante, on_delete=models.CASCADE, related_name='SaveUserPlante')
 
     def __str__(self):

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+{% extends 'main.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+<div class="background">
+    <div class="displayed">
+        {% if plante %}
+        <div class="text-center font-weight-bold">
+            <p class="titre titrePage"> Ce que nous avons trouvé:</p>
+        </div>
+        <div class="pad">
+            <div class="card text-white bg-success d-flex justify-content-between" style="max-width: 25rem;">
+                <img class="card-img-top">
+                <div class="card text-black text-center">
+                    <img src="{{plante.picture}}" style="img-fluid. max-width: 100% height: auto"
+                         alt="Card image cap" class="picture">
+                </div>
+                <div class="card-header text-center">{{ plante.name }}</div>
+                <div class="card-body">
+                    <p class="card-text text-center">Entretien: {{ plante.entretien }}</p>
+                    <p class="card-text text-center">Exposition: {{ plante.exposition }}</p>
+                </div>
+                <a href="{% url 'plantes:explainPlante' plante_id=plante.id %}" class="btn btn-primary mx-auto col-10 ">
+                    En savoir plus </a>
+            </div>
+        </div>
+
+        {% else %}
+        <div class="padForm">
+            <div class="card text-white bg-success d-flex justify-content-between" style="max-width: 25rem;">
+                <img class="card-img-top">
+                <div class="card text-black text-center">
+                    <img src="{% static '/assets/image/livre.jpg' %}" style="img-fluid. max-width: 100% height: auto"
+                         alt="Card image cap" class="picture">
+                </div>
+                <div class="card-header text-center text-info">Aucun résultat trouvé</div>
+                <div class="card-header text-center">
+                    <a href="{% url 'plantes:allPlante'%}" class="message btn btn-outline-warning my-2 my-sm-0">
+                        Retour</a></div>
+                <div class="text-center text-white">
+                    Nous n'avons trouvé aucun produit correspondant à votre recherche.</br>
+                    Veuillez reformuler ou essayer à nouveau prochainement.</br>
+                    Nous poursuivons nos recherches afin d'enrichir notre base de données.
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock content %}
+</html>
