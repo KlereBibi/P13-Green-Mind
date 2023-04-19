@@ -4,14 +4,14 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
-<div class="backgroundUser">
+<div class="background">
     <div class="bg-image" style="background-image: url({% static '/assets/image/ciel.jpg' %});height: 120vh">
         <div class="text-center font-weight-bold text-white titrePage">
             <p class="titreUser">Bonjour {{ user.username }},</p></br>
             <p>vous êtes sur la page de votre compte utilisateur.</p></br>
             <p>Vous trouverez vos informations ainsi que des explications sur le fonctionnement du site.</p>
             <p>Pour toutes demandes ou modification de votre compte, merci de nous
-                <a href="{% url 'welcome:contact'%}" class="text-warning">contacter.</a></p>
+                <a href="{% url 'welcome:contactPage'%}" class="text-warning">contacter.</a></p>
         </div>
         <div>
             <div class="displayed">
@@ -31,36 +31,32 @@
 
     <div class="displayed">
         <div class="pad">
-            <div class="card text-white bg-secondary" style="width: 20rem;">
+            <div class="card text-black backgroundU" style="width: 20rem;">
                 <div class="card-header text-center pad text-uppercase">Enregistrer vos plantes</div>
-                <div class="card-text text-center"><p>Allez sur la page <a href="{% url 'plantes:allPlante'%}"
-                                                                           class="text-warning">Plante.</a></p></div>
+                <div class="card-text text-center"><p>Allez sur la page
+                    <a href="{% url 'plantes:allPlante'%}" class="text-black">Plante.</a></p></div>
                 <div class="card-text text-center">Cherchez l'espèce souhaitée dans notre base de donnée ou bien
                     sélectionnez-en une proposée.
                 </div>
-                <div class="card-text text-center pad">Cliquez sur "En savoir plus.</div>
+                <div class="card-text text-center pad">Cliquez sur "En savoir plus".</div>
                 <div class="card-text text-center pad">Entrez le nom de votre plante.</div>
                 <div class="card-text text-center pad">Décochez la case de rappel si vous n'en souhaitez pas.</div>
                 <div class="card-text text-center pad">Et voilà, le tour est joué.</div>
             </div>
         </div>
         <div class="pad">
-            <div class="card text-white bg-secondary" style="width: 20rem;">
-                <div class="card-header text-center text-white text-uppercase">Comment désactiver un rappel?</div>
-                <div class="card-text text-center pad">Rendez-vous sur la page <a href="{% url 'plantes:myPlante'%}"
-                                                                                  class="text-warning">Vos
-                    plantes</a></div>
+            <div class="card text-black backgroundU" style="width: 20rem;">
+                <div class="card-header text-center text-uppercase">Comment désactiver un rappel?</div>
+                <div class="card-text text-center pad">Rendez-vous sur la page <a class="text-black" href="{% url 'plantes:myPlante'%}">Vos plantes</a></div>
                 <div class="card-text text-center pad">Cliquez sur le bouton "Desactiver" en dessous de "Rappel actif"
                 </div>
             </div>
         </div>
         <div class="pad">
-            <div class="card text-white bg-secondary" style="width: 20rem;">
-                <div class="card-header text-center text-white text-uppercase">Comment recevoir un rappel?</div>
-                <div class="card-text text-center pad">Rendez-vous sur la page <a
-                        href="{% url 'plantes:myPlante'%}"
-                        class="text-warning">Vos
-                    plantes</a></div>
+            <div class="card text-black backgroundU" style="width: 20rem;">
+                <div class="card-header text-center text-uppercase">Comment recevoir un rappel?</div>
+                <div class="card-text text-center pad">Rendez-vous sur la page
+                    <a class="text-black" href="{% url 'plantes:myPlante'%}">Vos plantes</a></div>
                 <div class="card-text text-center pad">Cliquez sur le bouton "Activer le rappel"</div>
             </div>
         </div>

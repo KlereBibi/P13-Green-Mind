@@ -1,5 +1,4 @@
 import requests
-import datetime
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.db import IntegrityError
@@ -7,66 +6,6 @@ from django.views.decorators.http import require_http_methods
 from plantes.forms import SearchPlante, SavePlante
 from plantes.models import Plante, UserPlante, Rappel
 from datetime import date, timedelta
-
-
-def apiwiki(plantesearch):
-
-    url = "http://fr.wikipedia.org/w/api.php?"
-    parameters = {
-        "action": "query",
-        "prop": "extracts|info",
-        "inprop": "url",
-        "explaintext": True,
-        "generator": "geosearch",
-        "exsentences": 2,
-        "exlimit": 1,
-        "titles": f"{plantesearch}"
-    }
-
-    res = requests.get(url, params=parameters)
-
-    if res.status_code == 200:
-        content = res.json()
-
-        try:
-            content.get("query").get("pages")
-        except AttributeError:
-            return False
-
-        places = content.get("query").get("pages")
-        places_list = []
-
-        for place in places:
-            places_list.append(
-                (
-                    places.get(place).get("index"),
-                    places.get(place).get("pageid"),
-                )
-            )
-        if not places_list:
-            return False
-
-        place_selected = min(places_list)
-        pageid_selected = str(place_selected[1])
-
-        article = {
-            "title": content.get("query")
-                .get("pages")
-                .get(pageid_selected)
-                .get("title", ""),
-            "extract": content.get("query")
-                .get("pages")
-                .get(pageid_selected)
-                .get("extract", ""),
-            "fullurl": content.get("query")
-                .get("pages")
-                .get(pageid_selected)
-                .get("fullurl", ""),
-        }
-        return article
-
-    else:
-        return False
 
 
 class UserTexte:
@@ -203,7 +142,7 @@ def search_plante_db(request):
     form = SearchPlante(request.POST)
     if form.is_valid():
         plante_user = form.cleaned_data
-        plante_wanted = plante_user['plante']
+        plante_wanted = plante_user['plante'].lower()
         try:
             plante_db = Plante.objects.get(name=plante_wanted)
         except Plante.DoesNotExist:

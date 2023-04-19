@@ -17,6 +17,7 @@ class Command(BaseCommand):
         plante_obj = []
         for element in plantes:
             try:
+                element[0] = element[0].lower()
                 new_plante = Plante(name=element[0],
                      type= element[1],
                      resume=element[2],

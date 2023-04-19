@@ -9,7 +9,7 @@
     <meta name="author" content=""/>
     <title>{% block title %} {% endblock title %}</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="{%  static 'assets/image/favicon.jpg' %}"/>
+    <link rel="icon" type="image/x-icon" href="{%  static 'assets/image/tournesol.png' %}"/>
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
@@ -21,25 +21,22 @@
 <body id="page-top">
 {% block nav %}
 <!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-        <a class="navbar-brand" href="{% url 'welcome:homePage' %}"><img src="{% static 'assets/image/favicon.jpg' %}"
-                                                                         height="50" width="35" alt="logo"></a>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top " id="mainNav">
         <a class="nav-link font-italic" href="{% url 'welcome:homePage' %}">GreenMind</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+        <a class="navbar-brand" href="{% url 'welcome:homePage' %}">
+            <img src="{% static 'assets/image/tournesol.png' %}" height="50" width="35" alt="logo"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i class="fas fa-bars ms-1"></i>
         </button>
-
-    </div>
-    </div>
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
             <li class="nav-item"><a class="nav-link" href="{% url 'plantes:allPlante' %}">Plantes</a></li>
             {% if user.is_authenticated %}
             <li class="nav-item"><a class="nav-link" href="{% url 'plantes:myPlante' %}">Mes plantes</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'authentification:account' %}">Mon compte</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'welcome:contact' %}">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'welcome:contactPage' %}">Contact</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'authentification:logout' %}">Déconnexion</a></li>
             {% else %}
             <li class="nav-item"><a class="nav-link" href="{% url 'authentification:login' %}">Connexion</a></li>

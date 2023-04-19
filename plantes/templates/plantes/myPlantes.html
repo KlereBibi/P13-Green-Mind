@@ -8,49 +8,51 @@
 <div class="bg-image" style="background-image: url({% static '/assets/image/pousse.jpg' %});
             height: 80vh">
     <div class="text-center font-weight-bold text-white titrePage">
-    <p class="titre text-uppercase">Vos plantes</p>
-</div></div>
+        <p class="titre text-uppercase">Vos plantes</p>
+    </div>
+</div>
 {% endblock header %}
 
 {% block content %}
 
-    <div class="displayed background">
-        {% if all_plantes_db %}
-        {% for plante in all_plantes_db %}
-        <div class="pad">
-            <div class="card text-white bg-success" style="max-width: 20rem;">
-                <div class="card text-black text-center">
-                    <img class="card-img-top">
-                    <img src="{{plante.plante.picture}}" style="img-fluid. max-width: 100% height: auto"
-                         alt="Card image cap" class="picture">
-                </div>
-                <div class="card-header text-center">{{ plante.name}}</div>
-                <div class="card-header text-center">{{ plante.plante.name}}</div>
-                <div class="card-header text-center">
-                    {% if plante.rappel is True %} Rappel actif {% else %} Rappel inactif {% endif %} tous les {{ plante.plante.arrosage }} jour(s).</br>
-                    <div>{% if plante.rappel is True %} Prochain rappel le {{ plante.date_futur}} </br><a
-                            href="{% url 'plantes:reminder' plante_user_id=plante.id %}"
-                            class="message btn btn-outline-warning my-2 my-sm-0"> Désactiver
-                        {% else %}</a> <a href="{% url 'plantes:reminder' plante_user_id=plante.id %}"
-                                          class="btn btn-primary my-2 my-sm-0">Activer un rappel{% endif %}</a></div>
-                </div>
-                <p class="card-text text-center">Entretien: {{ plante.plante.entretien }}</p>
-                <p class="card-text text-center">Exposition: {{ plante.plante.exposition }}</p>
-                <p class="card-text text-center">{{ plante.plante.resume }}</p>
-                <p class="card-text text-center"> Apprenez en plus sur <a href="{{ plante.plante.url }}">le site de
-                    notre
-                    source</a></br></p>
-                <a href="{% url 'plantes:delete' plante_user_id=plante.id %}"
-                   class="message btn btn-outline-warning my-2 my-sm-0">Supprimer</a>
+<div class="displayed background">
+    {% if all_plantes_db %}
+    {% for plante in all_plantes_db %}
+    <div class="pad">
+        <div class="card text-white bg-success" style="max-width: 30rem;">
+            <div class="card text-black text-center">
+                <img class="card-img-top">
+                <img src="{{plante.plante.picture}}" style="img-fluid. max-width: 100% height: auto"
+                     alt="Card image cap" class="picture">
             </div>
-        </div>
-        {% endfor %}
-
-        {% else %}
-        <div class="p-5 textOFF" id="bgcolor">
-            Vous n'avez pas de plantes enregistrer.
-            {% endif %}
+            {% if plante.name %}
+                <div class="card-header text-center">{{ plante.name }}</div>
+                {% endif %}
+            <div class="card-header text-center">{{ plante.plante.name}}</div>
+            <div class="card-header text-center">
+                {% if plante.rappel is True %} Rappel actif {% else %} Rappel inactif {% endif %} tous les {{ plante.plante.arrosage }} jour(s).</br>
+                <div>{% if plante.rappel is True %} Prochain rappel le {{ plante.date_futur}} </br><a
+                        href="{% url 'plantes:reminder' plante_user_id=plante.id %}"
+                        class="message btn btn-outline-warning my-2 my-sm-0"> Désactiver
+                    {% else %}</a> <a href="{% url 'plantes:reminder' plante_user_id=plante.id %}"
+                                      class="btn btn-primary my-2 my-sm-0">Activer un rappel{% endif %}</a></div>
+            </div>
+            <p class="card-text text-center">Entretien: {{ plante.plante.entretien }}</p>
+            <p class="card-text text-center">Exposition: {{ plante.plante.exposition }}</p>
+            <p class="card-text text-center">{{ plante.plante.resume }}</p>
+            <p class="card-text text-center"> Apprenez en plus sur <a href="{{ plante.plante.url }}">le site de
+                notre
+                source</a></br></p>
+            <a href="{% url 'plantes:delete' plante_user_id=plante.id %}"
+               class="message btn btn-outline-warning my-2 my-sm-0">Supprimer</a>
         </div>
     </div>
+    {% endfor %}
+
+    {% else %}
+    <div class="p-5 textOFF" id="bgcolor">
+        Vous n'avez pas de plantes enregistrer.
+        {% endif %}
+    </div>
+    {% endblock content %}
 </div>
-{% endblock content %}

@@ -21,7 +21,7 @@ class Plante(models.Model):
 
 class UserPlante (models.Model):
 
-    name = models.CharField(max_length=100, unique=True)
+    name = models.CharField(max_length=100, unique=True, null=True)
     rappel = models.BooleanField()
     date_futur = models.DateField(null=True)
     plante = models.ForeignKey(Plante, on_delete=models.CASCADE)

@@ -25,10 +25,9 @@
             </div>
         </div>
         <div class="padForm">
-            <div class="card text-center bg-success backgroundCard" style="width: 25 rem">
+            <div class="card text-center bg-success backgroundCard" style="width: 25rem">
                 <div class="card-header text-center text-uppercase">Enregistrement</div>
-                <div class="mx-auto">
-                    <form method="post" action="{% url 'authentification:register' %}">
+                    <form class="mx-auto tailleForm" method="post" action="{% url 'authentification:register' %}">
                         {% csrf_token %}
                         {% bootstrap_form register_form layout="floating" %}
                         <div class="pad">
@@ -37,9 +36,9 @@
                             </button>
                         </div>
                     </form>
-                </div>
+
             </div>
         </div>
     </div>
-</div>
 {% endblock %}
+</div>

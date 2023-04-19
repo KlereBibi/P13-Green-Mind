@@ -28,7 +28,6 @@ def answer_contact(request, user_id):
         if form.is_valid():
             contact = form.cleaned_data
             user = User.objects.get(id=user_id)
-            print(contact)
             mail_subject = "Un utilisateur a une question."
             message = render_to_string('welcome/contact.txt', {
                 'prenom':user.first_name,

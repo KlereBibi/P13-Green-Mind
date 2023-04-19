@@ -20,6 +20,6 @@ from .views import home, legal_mention, contact, answer_contact
 urlpatterns = [
     path('', home, name="homePage"),
     path('mentionLegal/', legal_mention, name="legalMention"),
-    path('contact/', contact, name="contact"),
+    path('contact/', contact, name="contactPage"),
     path('contact/<int:user_id>', answer_contact, name="contact"),
 ]
