@@ -51,17 +51,16 @@
 
         {% else %}
         <div>
-                <div class="card text-center bg-success backgroundCard" style="width: 25rem">
-                    <div class="card-body text-white text-center">Vous n'avez pas de plantes enregistrer.</div>
-                    <div class="card-body text-white text-center"><a type="submit"
-                                                                     href="{% url 'authentification:register' %}"
-                                                                     class="message btn btn-outline-warning my-2 my-sm-0">Plante</a>
-                    </div>
+            <div class="card text-center bg-success backgroundCard" style="width: 25rem">
+                <div class="card-body text-white text-center">Vous n'avez pas de plantes enregistrer.</div>
+                <div class="card-body text-white text-center"><a type="submit"
+                                                                 href="{% url 'plantes:allPlante' %}"
+                                                                 class="message btn btn-outline-warning my-2 my-sm-0">Plante</a>
                 </div>
-                <div class="P-5"></div>
             </div>
-            {% endif %}
+            <div class="P-5"></div>
         </div>
-        {% endblock content %}
+        {% endif %}
     </div>
+    {% endblock content %}
 </div>
