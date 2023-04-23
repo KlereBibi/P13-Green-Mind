@@ -139,7 +139,7 @@ LOGIN_URL = "authentification:login"
 LOGIN_REDIRECT_URL = "authentification:account"
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = os.getenv(r'SMTP')
 EMAIL_HOST_USER = os.getenv(r'MAIL')
 EMAIL_HOST_PASSWORD = os.getenv(r'PASSWORD')
 EMAIL_PORT = os.getenv(r'PORT')
