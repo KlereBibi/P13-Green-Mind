@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 {% extends 'main.html' %}
 {% load static %}
 {% load django_bootstrap5 %}
@@ -13,9 +13,9 @@
                 <div class="card-header text-center text-uppercase">Contactez nous</div>
                 <form class="mx-auto" action="{% url 'welcome:contact' user_id=user.id %}" method="post">
                     {% csrf_token %}
-                    {% bootstrap_form contact_form layout="floating" %}
+                    {% bootstrap_form form layout="floating" %}
                     <div class="pad">
-                        <button type="submit" class="message btn btn-outline-warning my-2 my-sm-0">
+                        <button id="submit" type="submit" class="message btn btn-outline-warning my-2 my-sm-0">
                             Envoyer
                         </button>
                     </div>

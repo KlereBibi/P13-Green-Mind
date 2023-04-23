@@ -5,14 +5,15 @@
 
 {% block content %}
 <div class="background">
-    <div class="container px-4 px-lg-5 h-100">
-        <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center text-white">
+    <div class="displayed">
+        <div class="padForm">
             Le lien d'activation est invalid!
-            <a href="{% url 'authentification:login' %}" class="message btn btn-outline-warning my-2 my-sm-0">
-                Login </a>
+            <div class="pos">
+                <a href="{% url 'authentification:login' %}" class="message btn btn-outline-warning my-2 my-sm-0">
+                    Login </a>
+            </div>
         </div>
-
     </div>
+    <div class="P-5"></div>
+    {% endblock %}
 </div>
-
-{% endblock %}

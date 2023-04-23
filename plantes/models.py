@@ -1,6 +1,9 @@
+"""Module to create tables in the database concerning the application of plants."""
+
+import datetime
 from django.db import models
 from authentification.models import User
-import datetime
+
 
 class Plante(models.Model):
 
@@ -21,7 +24,9 @@ class Plante(models.Model):
 
 class UserPlante (models.Model):
 
-    name = models.CharField(max_length=100, unique=True, null=True)
+    """Class to create plante that user choice"""
+
+    name = models.CharField(max_length=100, null=True)
     rappel = models.BooleanField()
     date_futur = models.DateField(null=True)
     plante = models.ForeignKey(Plante, on_delete=models.CASCADE)
@@ -32,6 +37,8 @@ class UserPlante (models.Model):
 
 
 class Rappel (models.Model):
+
+    """class to create a table to record the dates of sending reminder emails related to the user plante"""
 
     emailDate = models.DateField(default=datetime.date.today)
     userplante = models.ForeignKey(UserPlante, on_delete=models.CASCADE, related_name='SaveUserPlante')

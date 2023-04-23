@@ -13,7 +13,7 @@
                     <p>Apprenez en d'avantage sur les
                         plantes avec Wikipédia:</br></p>
                     <div class="displayedForm">
-                        <form class="mx-auto" method="POST" action="{% url 'plantes:searchPlante' %}">
+                        <form class="mx-auto text-black" method="POST" action="{% url 'plantes:searchPlante' %}">
                             {% csrf_token %}
                             {% bootstrap_form search_form layout="floating" %}
                             <input class="message btn btn-outline-warning my-2 my-sm-0 " type="submit" value="Chercher">
@@ -26,7 +26,7 @@
                     <p>Faites votre recherche dans
                         notre base de données:</br></p>
                     <div class="displayedForm">
-                        <form class="mx-auto" method="POST" action="{% url 'plantes:dbPlante' %}">
+                        <form class="mx-auto text-black" method="POST" action="{% url 'plantes:dbPlante' %}">
                             {% csrf_token %}
                             {% bootstrap_form search_form layout="floating" %}
                             <input class="message btn btn-outline-warning my-2 my-sm-0 " type="submit" value="Chercher">

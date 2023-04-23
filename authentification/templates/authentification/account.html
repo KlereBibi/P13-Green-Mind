@@ -7,7 +7,7 @@
 <div class="background">
     <div class="bg-image" style="background-image: url({% static '/assets/image/ciel.jpg' %});height: 120vh">
         <div class="text-center font-weight-bold text-white titrePage">
-            <p class="titreUser">Bonjour {{ user.username }},</p></br>
+            <p id="textConfirSel" class="titreUser">Bonjour {{ user.first_name }},</p></br>
             <p>vous êtes sur la page de votre compte utilisateur.</p></br>
             <p>Vous trouverez vos informations ainsi que des explications sur le fonctionnement du site.</p>
             <p>Pour toutes demandes ou modification de votre compte, merci de nous
@@ -17,12 +17,13 @@
             <div class="displayed">
                 <div class="pad">
                     <div class="card text-white backgroundCard" style="width: 20rem;">
-                        <div class="card-header text-center text-white text-uppercase backgroundCard">Vos informations
+                        <div class="card-header text-center text-black text-uppercase backgroundCard">Vos informations
                         </div>
                         <div class="card-text text-center">{{ user.first_name }} {{ user.last_name }}</div>
+                        <div class="card-text text-center">{{ user.username}}</div>
                         <div class="card-text text-center">{{ user.email }}</div>
                         <div class="card-text text-center"><a href="{% url 'plantes:myPlante'%}" class="text-warning">Vos
-                            plantes</a></p></div>
+                            plantes</a></div>
                     </div>
                 </div>
             </div>

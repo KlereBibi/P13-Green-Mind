@@ -10,21 +10,27 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
+import json
+import sys
+from dotenv import load_dotenv
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(dotenv_path=BASE_DIR / '.env')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'csftxb()-7&9ime_@%+h8-%77=7+px&5$itzorngn5-5ano)3t'
+SECRET_KEY = os.getenv(r'SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv(r'DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = json.loads(os.getenv('ALLOWED_HOSTS'))
+
+CSRF_TRUSTED_ORIGINS = json.loads(os.getenv('CSRF_HOSTS'))
 
 # Application definition
 
@@ -35,10 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'welcome',
     'django_bootstrap5',
     'authentification',
     'plantes',
+    'welcome',
 ]
 
 MIDDLEWARE = [
@@ -64,11 +70,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'plantes.context_processor.search_form',
-                'plantes.context_processor.save_form',
-                'authentification.context_processor.register_form',
-                'authentification.context_processor.login_form',
-                'welcome.context_processor.contact_form',
             ],
         },
     },
@@ -81,14 +82,16 @@ WSGI_APPLICATION = 'GreenMind.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'GreenMind',
-        'USER': 'postgres',
-        'PASSWORD': '184300',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': os.getenv('DBENGINE'),
+        'NAME': os.getenv('DBNAME'),
+        'USER': os.getenv('DBUSER'),
+        'PASSWORD': os.getenv('DBPASSWORD'),
+        'HOST': os.getenv('DBHOST'),
+        'PORT': os.getenv('DBPORT'),
     }
 }
+if 'test' in sys.argv:
+    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -133,7 +136,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = "authentification.User"
 AUTHENTICATION_BACKENDS = ['authentification.backend.EmailBackend']
 LOGIN_URL = "authentification:login"
-LOGIN_REDIRECT_URL = "welcome:homePage"
+LOGIN_REDIRECT_URL = "authentification:account"
 
-
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = os.getenv(r'MAIL')
+EMAIL_HOST_PASSWORD = os.getenv(r'PASSWORD')
+EMAIL_PORT = os.getenv(r'PORT')
+EMAIL_USE_TLS = os.getenv(r'TLS')
+DEFAULT_FROM_EMAIL = os.getenv(r'MAIL')
 

@@ -1,0 +1,10 @@
+.idea
+db.sqlite3
+/pycache/
+pycache
+*.pyc
+Pipfile
+Pipfile.lock
+.coverage
+staticfiles/
+.env

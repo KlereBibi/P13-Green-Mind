@@ -1,6 +1,8 @@
+"""Customize command to read a file and save the information in the database"""
+
+import csv
 from django.core.management.base import BaseCommand
 from plantes.models import Plante
-import csv
 
 
 class Command(BaseCommand):
@@ -32,4 +34,3 @@ class Command(BaseCommand):
                 continue
 
         Plante.objects.bulk_create(plante_obj, ignore_conflicts=True)
-

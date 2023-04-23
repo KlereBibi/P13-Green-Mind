@@ -1,3 +1,5 @@
+"""Module for configuring the authentification package"""
+
 from django.apps import AppConfig
 
 

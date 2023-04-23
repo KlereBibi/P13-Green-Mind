@@ -1,8 +1,10 @@
+"""Customize command to check in the database if reminder emails are to be sent"""
+
+from datetime import date, timedelta
+from django.core.mail import EmailMessage
 from django.core.management.base import BaseCommand
 from django.template.loader import render_to_string
 from plantes.models import UserPlante, Rappel
-from datetime import date, timedelta
-from django.core.mail import EmailMessage
 
 
 class Command(BaseCommand):

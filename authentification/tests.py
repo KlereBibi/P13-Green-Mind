@@ -33,11 +33,11 @@ class TestViews(TestCase):
 
         c = Client()
         response = c.post('/auth/login/', {'username': 'test', 'password': 'test@.test'})
-        self.assertRedirects(response, '/')
+        self.assertRedirects(response, '/auth/account/')
 
     def test_login_error(self):
 
-        """login success test with identifiant"""
+        """login error test with no identifiant in database"""
 
         c = Client()
         response = c.post('/auth/login/', {'username': 'false', 'password': 'false'})
@@ -56,21 +56,11 @@ class TestViews(TestCase):
         self.assertEqual(len(mail.outbox), 1)
 
     def test_register_error(self):
-        """register success test with identifiant"""
+
+        """register error test with empty fields"""
 
         c = Client()
         response = c.post('/auth/register/', {'email': '', 'username': '',
-                                              'first_name': '', 'last_name': '',
-                                              'password1': '', 'password2': ''})
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(mail.outbox), 0)
-        self.assertTemplateUsed(response, 'authentification/register.html')
-
-    def test_register_invalid(self):
-        """register success test with identifiant"""
-
-        c = Client()
-        response = c.get('/auth/register/', {'email': '', 'username': '',
                                               'first_name': '', 'last_name': '',
                                               'password1': '', 'password2': ''})
         self.assertEqual(response.status_code, 200)
@@ -88,7 +78,13 @@ class TestViews(TestCase):
 
 
 class PasswordResetTest(TestCase):
+
+    """class to test the change password function"""
+
     def setUp(self):
+
+        """user settings initialization for test"""
+
         self.user = User.objects.create(
                     username="user",
                     email="test@gmail.com",
@@ -97,28 +93,33 @@ class PasswordResetTest(TestCase):
         self.c = Client()
 
     def test_send_mail(self):
+
+        """test to verify the sending of mail at the password reset"""
+
         self.c.post('/auth/reset_password/', {'email': 'test@gmail.com'})
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(mail.outbox[0].subject, 'Réinitialisation du mot de passe.')
         assert mail.outbox[0].to == ['test@gmail.com']
 
     def test_send_no_mail(self):
+
+        """test to verify the mail no sending if mail is not in database"""
+
         self.c.post('/auth/reset_password/', {'email': 'gg@gmail.com'})
         self.assertEqual(len(mail.outbox), 0)
 
     def test_url_mail_password_reset(self):
 
-        #Send the email
+        """test to check that the email sent contains the correct url"""
+
         self.c.post('/auth/reset_password/', {'email': 'test@gmail.com'})
 
-        #Search the email adress to redirect
         body = mail.outbox[0].body
         link_regex = re.compile(r'((https?):((//)|(\\\\))+([\w\d:#@%/;$()~_?\+-=\\\.&](#!)?)*)', re.DOTALL)
         links = re.findall(link_regex, body)
         for element in links:
             self.url = element[0]
 
-        #Test the template use redirection
         response = self.c.get(self.url, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'password/password_reset_confirm.html')
