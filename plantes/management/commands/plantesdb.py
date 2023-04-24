@@ -3,6 +3,10 @@
 import csv
 from django.core.management.base import BaseCommand
 from plantes.models import Plante
+from dotenv import load_dotenv
+import os
+from GreenMind.settings import BASE_DIR
+load_dotenv(dotenv_path=BASE_DIR / '.env')
 
 
 class Command(BaseCommand):
@@ -10,7 +14,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
 
         plantes = []
-        with open("/Users/klere/Documents/open_classroom/P13/GreenMind/plantes/management/commands/Plantes.csv", 'r', encoding='utf-8') as file:
+        with open(os.getenv('URL'), 'r', encoding='utf-8') as file:
             plantes_list = csv.reader(file)
 
             for row in plantes_list:
