@@ -32,11 +32,16 @@
         {% else %}
         <div class="padForm">
             <div class="card text-white bg-success d-flex justify-content-between" style="max-width: 25rem;">
-                <img class="card-img-top">
-                <div class="card text-black text-center">
-                    <img src="{% static '/assets/image/livre.jpg' %}" style="img-fluid. max-width: 100% height: auto"
-                         alt="Card image cap" class="picture">
+                <div class="card-header text-center">
+                    <div class="displayedForm">
+                        <div class="pos">
+                            <img src="{% static '/assets/image/livre.jpg' %}"
+                                 style="img-fluid. max-width: 100% height: auto"
+                                 alt="Card image cap" class="picture">
+                        </div>
+                    </div>
                 </div>
+
                 <div class="card-header text-center text-info">Aucun résultat trouvé</div>
                 <div class="card-header text-center">
                     <a href="{% url 'plantes:allPlante'%}" class="message btn btn-outline-warning my-2 my-sm-0">
@@ -50,6 +55,6 @@
         </div>
     </div>
     {% endif %}
+
+    {% endblock content %}
 </div>
-{% endblock content %}
-</html>
