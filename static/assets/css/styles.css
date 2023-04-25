@@ -11833,6 +11833,11 @@ padding-top: 15%;
 
 ;}
 
+.picture {
+width : 75px;
+height : 100px;
+}
+
 .background {
 background-color:#9ce5a8;}
 
@@ -11852,5 +11857,3 @@ width: 20rem;}
 .form-text {
 text-align: start;
 color:black;}
-
-

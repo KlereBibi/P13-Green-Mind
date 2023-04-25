@@ -134,8 +134,10 @@ def user_plante(request, plante_id):
             try:
                 plante = Plante.objects.get(pk=plante_id)
                 plante_save.append(UserPlante(name=name_plante['name_plante_user'], rappel=name_plante['reminder'], plante=plante, user=request.user))
-                UserPlante.objects.bulk_create(plante_save)
-                plante_user = UserPlante.objects.get(name=name_plante['name_plante_user'])
+                plante_save = UserPlante.objects.bulk_create(plante_save)
+                for element in plante_save:
+                    id_plante = element.id
+                plante_user = UserPlante.objects.get(id=id_plante)
                 if name_plante['reminder'] is True:
                     endate= date.today() + timedelta(days=plante.arrosage)
                     plante_user.date_futur = endate

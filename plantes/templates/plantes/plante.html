@@ -44,11 +44,13 @@
         {% if all_plantes_db %}
         {% for plante in all_plantes_db %}
         <div class="pad">
-            <div class="card text-white bg-success d-flex justify-content-between" style="max-width: 25rem;">
-                <img class="card-img-top">
-                <div class="card text-black text-center">
-                    <img src="{{plante.picture}}" style="img-fluid. max-width: 100% height: auto"
-                         alt="Card image cap" class="picture">
+            <div class="card text-white bg-success d-flex justify-content-between" style="width: 25rem;">
+                <div class="card-header text-center">
+                    <div class="displayedForm">
+                        <div class="pos">
+                            <img src="{{plante.picture}}" alt="Card image cap" class="picture">
+                        </div>
+                    </div>
                 </div>
                 {% if plante.name %}
                 <div class="card-header text-center">{{ plante.name }}</div>
