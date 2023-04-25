@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from GreenMind import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', include(('welcome.urls', 'welcome'), namespace='home')),
     path('auth/', include('authentification.urls')),
     path('plantes/', include('plantes.urls')),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
