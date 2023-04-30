@@ -31,7 +31,7 @@ class Command(BaseCommand):
                  )
                 email.send()
                 email_send.append(Rappel(userplante=element))
-                element.date_futur=date.today() + timedelta(days=date_reminder.arrosage)
+                element.date_futur=date.today() + timedelta(days=10)
                 element.save()
 
         Rappel.objects.bulk_create(email_send)
