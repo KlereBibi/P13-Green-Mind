@@ -10,13 +10,12 @@ from plantes.models import UserPlante, Rappel
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
-
         plante_user = UserPlante.objects.all()
         email_send = []
         for element in plante_user:
             date_reminder = element.plante
             if element.rappel is True and date.today() >= element.date_futur:
-                if element.name == None:
+                if not element.name:
                     mail_subject = "Rappel d'arrosage pour votre plante."
                 else:
                     mail_subject = "Rappel d'arrosage pour "f"{element.name}."
