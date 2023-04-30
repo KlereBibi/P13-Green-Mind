@@ -4,32 +4,35 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
-<div class="background">
-    <div class="displayed">
-        <div class="padForm">
-            <div class="card text-center bg-success backgroundCard" style="width: 25rem">
-                <div class="card-header text-center text-uppercase">Authentification</div>
-                <div class="card-body text-center">
-                    <form id="testConfirmSel" class="mx-auto text-black" action="{% url 'authentification:login' %}" method="post">
-                        {% csrf_token %}
-                        {% bootstrap_form form layout="floating" %}
-                        <div class="pad">
-                            <button id="submit" type="submit" class="message btn btn-outline-warning my-2 my-sm-0">
-                                Soumettre
-                            </button>
-                            <a type="submit" href="{% url 'authentification:register' %}"
-                               class="message btn btn-outline-warning my-2 my-sm-0">
-                                S'enregistrer
-                            </a>
-                        </div>
-                    </form>
-                </div>
-                <div class="pad">
-                    <a class="message text-white" href="{% url 'authentification:reset_password' %}">Mot de passe
-                        oublié</a>
+<div class="bg-image" style="background-image: url({% static '/assets/img/home.jpg' %});">
+    <section class="page-section bg-light.bg-gradient" id="services">
+        <div class="displayed">
+            <div class="padForm">
+                <div class="card text-center bg-success backgroundCard" style="width: 25rem">
+                    <div class="card-header text-center text-uppercase">Authentification</div>
+                    <div class="card-body text-center">
+                        <form id="testConfirmSel" class="mx-auto text-black" action="{% url 'authentification:login' %}"
+                              method="post">
+                            {% csrf_token %}
+                            {% bootstrap_form form layout="floating" %}
+                            <div class="pad">
+                                <button id="submit" type="submit" class="message btn btn-outline-warning my-2 my-sm-0">
+                                    Soumettre
+                                </button>
+                                <a type="submit" href="{% url 'authentification:register' %}"
+                                   class="message btn btn-outline-warning my-2 my-sm-0">
+                                    S'enregistrer
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="pad">
+                        <a class="message text-white" href="{% url 'authentification:reset_password' %}">Mot de passe
+                            oublié</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    {% endblock %}
+    </section>
 </div>
+{% endblock %}

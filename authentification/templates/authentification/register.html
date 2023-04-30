@@ -4,22 +4,24 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
-<div class="background">
-    <div class="displayed">
-        <div class="padForm">
-            <div class="card text-center bg-success backgroundCard" style="width: 25rem">
-                <div class="card-header text-center text-uppercase">Enregistrement</div>
-                <form class="mx-auto tailleForm" method="post" action="{% url 'authentification:register' %}">
-                    {% csrf_token %}
-                    {% bootstrap_form form layout="floating" %}
-                    <div class="pad">
-                        <button type="submit" id="sub" class="btn btn-outline-warning my-2 my-sm-0">
-                            Soumettre
-                        </button>
-                    </div>
-                </form>
+<div class="bg-image" style="background-image: url({% static '/assets/img/home.jpg' %});">
+    <section class="page-section bg-light.bg-gradient" id="services">
+        <div class="displayed">
+            <div class="padForm">
+                <div class="card text-center bg-success backgroundCard" style="width: 25rem">
+                    <div class="card-header text-center text-uppercase">Enregistrement</div>
+                    <form class="mx-auto tailleForm" method="post" action="{% url 'authentification:register' %}">
+                        {% csrf_token %}
+                        {% bootstrap_form form layout="floating" %}
+                        <div class="pad">
+                            <button type="submit" id="sub" class="btn btn-outline-warning my-2 my-sm-0">
+                                Soumettre
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-    {% endblock %}
+    </section>
 </div>
+{% endblock %}

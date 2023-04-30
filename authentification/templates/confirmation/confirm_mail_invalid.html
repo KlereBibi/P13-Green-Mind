@@ -1,19 +1,15 @@
 <!DOCTYPE html>
 {% extends 'main.html' %}
 {% load static %}
-{% load django_bootstrap5 %}
 
 {% block content %}
-<div class="background">
-    <div class="displayed">
-        <div class="padForm">
-            Le lien d'activation est invalid!
-            <div class="pos">
-                <a href="{% url 'authentification:login' %}" class="message btn btn-outline-warning my-2 my-sm-0">
-                    Login </a>
-            </div>
+<div class="displayed">
+    <div class="padForm">
+        Le lien d'activation est invalid!
+        <div class="pos">
+            <a href="{% url 'authentification:login' %}" class="message btn btn-outline-warning my-2 my-sm-0">
+                Login </a>
         </div>
     </div>
-    <div class="P-5"></div>
-    {% endblock %}
 </div>
+{% endblock %}

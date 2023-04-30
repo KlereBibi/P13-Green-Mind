@@ -5,79 +5,71 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
-<div class="background">
-    <div class="displayed">
-        <div class="padForm">
-            <div class="card text-center text-white backgroundU" style="width: 30rem; height: 10rem">
-                <div class="bg-image"
-                     style="background-image: url({% static '/assets/image/feuille.jpg' %});height: 150vh">
-                    <p>Faites votre recherche dans
-                        notre base de données:</br></p>
-                    <div class="displayedForm">
-                        <form class="mx-auto text-black" method="POST" action="{% url 'plantes:dbPlante' %}">
-                            {% csrf_token %}
-                            {% bootstrap_form search_form layout="floating" %}
-                            <input class="message btn btn-outline-warning my-2 my-sm-0 " type="submit"
-                                   value="Chercher">
-                        </form>
-                    </div>
-                </div>
-            </div>
+<div class="bg-image" style="background-image: url({% static '/assets/image/feuille.jpg' %});">
+    <section class="page-section bg-light.bg-gradient" id="services">
+        <div class="text-center font-weight-bold text-green ">
+            <p class="titre"> Nos plantes disponibles</p>
         </div>
-    </div>
-    <div class="text-center font-weight-bold text-green ">
-        <p class="titre"> Nos plantes disponibles</p>
-    </div>
-    <div class="displayed">
-        {% if all_plantes_db %}
-        {% for plante in all_plantes_db %}
-        <div class="pad">
-            <div class="card text-white bg-success d-flex justify-content-between" style="width: 25rem;">
-                <div class="card-header text-center">
-                    <div class="displayedForm">
-                        <div class="pos">
-                            <img src="{{plante.picture}}" alt="Card image cap" class="picture">
+        <div class="displayed">
+            {% if all_plantes_db %}
+            {% for plante in all_plantes_db %}
+            <div class="pad">
+                <div class="card text-white bg-success d-flex justify-content-between" style="width: 25rem;">
+                    <div class="card-header text-center">
+                        <div class="displayedForm">
+                            <div class="pos">
+                                <img src="{{plante.picture}}" alt="Card image cap" class="picture">
+                            </div>
                         </div>
                     </div>
-                </div>
-                {% if plante.name %}
-                <div class="card-header text-center">{{ plante.name }}</div>
-                {% endif %}
-                <div class="card-body">
-                    <p class="card-text text-center">Entretien: {{ plante.entretien }}</p>
-                    <p class="card-text text-center">Exposition: {{ plante.exposition }}</p>
-                </div>
-                <a href="{% url 'plantes:explainPlante' plante_id=plante.id %}"
-                   class="btn btn-primary mx-auto col-10 ">
-                    En
-                    savoir plus </a>
-            </div>
-        </div>
-        {% endfor %}
-
-        {% else %}
-        <div class="p-5 textOFF">Aucun produit ne correspond à votre recherche</div>
-        {% endif %}
-    </div>
-    <div class="displayed">
-        <div class="padForm">
-            <div class="card text-center text-white backgroundU" style="width: 30rem; height: 10rem">
-                <div class="bg-image"
-                     style="background-image: url({% static '/assets/image/feuille.jpg' %});height: 150vh">
-                    <p>Apprenez en d'avantage sur les
-                        plantes avec Wikipédia: </br></p>
-                    <div class="displayedForm">
-                        <form class="mx-auto text-black" method="POST"
-                              action="{% url 'plantes:searchPlante' %}">
-                            {% csrf_token %}
-                            {% bootstrap_form search_form layout="floating" %}
-                            <input class="message btn btn-outline-warning my-2 my-sm-0 " type="submit"
-                                   value="Chercher">
-                        </form>
+                    {% if plante.name %}
+                    <div class="card-header text-center">{{ plante.name }}</div>
+                    {% endif %}
+                    <div class="card-body">
+                        <p class="card-text text-center">Entretien: {{ plante.entretien }}</p>
+                        <p class="card-text text-center">Exposition: {{ plante.exposition }}</p>
                     </div>
+                    <a href="{% url 'plantes:explainPlante' plante_id=plante.id %}"
+                       class="btn btn-primary mx-auto col-10 ">
+                        En
+                        savoir plus </a>
                 </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="p-5 textOFF">Aucun produit ne correspond à votre recherche</div>
+            {% endif %}
+        </div>
+    </section>
+</div>
+<div class="displayed">
+    <div class="padForm">
+        <div class="card text-center text-white bg-success" style="width: 30rem; height: 10rem">
+            <p>Faites votre recherche dans
+                notre base de données:</br></p>
+            <div class="displayedForm">
+                <form class="mx-auto text-black" method="POST" action="{% url 'plantes:dbPlante' %}">
+                    {% csrf_token %}
+                    {% bootstrap_form search_form layout="floating" %}
+                    <input class="message btn btn-outline-warning my-2 my-sm-0 " type="submit"
+                           value="Chercher">
+                </form>
+            </div>
+        </div>
+        <div class="card text-center text-white bg-success" style="width: 30rem; height: 10rem">
+            <p>Apprenez en d'avantage sur les
+                plantes avec Wikipédia: </br></p>
+            <div class="displayedForm">
+                <form class="mx-auto text-black" method="POST"
+                      action="{% url 'plantes:searchPlante' %}">
+                    {% csrf_token %}
+                    {% bootstrap_form search_form layout="floating" %}
+                    <input class="message btn btn-outline-warning my-2 my-sm-0 " type="submit"
+                           value="Chercher">
+                </form>
             </div>
         </div>
     </div>
-    {% endblock content %}
 </div>
+{% endblock content %}
+

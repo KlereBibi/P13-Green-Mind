@@ -5,24 +5,26 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
-
-<div class="background">
-    <div class="displayed">
-        <div class="padForm">
-            <div class="card text-center bg-success backgroundCard" style="width: 25rem;">
-                <div class="card-header text-center text-uppercase">Contactez nous</div>
-                <form class="mx-auto" action="{% url 'welcome:contact' user_id=user.id %}" method="post">
-                    {% csrf_token %}
-                    {% bootstrap_form form layout="floating" %}
-                    <div class="pad">
-                        <button id="submit" type="submit" class="message btn btn-outline-warning my-2 my-sm-0">
-                            Envoyer
-                        </button>
-                    </div>
-                </form>
+<div class="bg-image" style="background-image: url({% static '/assets/img/margherite.jpg' %});">
+    <section class="page-section bg-light.bg-gradient" id="services">
+        <div class="displayed">
+            <div class="padForm">
+                <div class="card text-center bg-success backgroundCard" style="width: 25rem;">
+                    <div class="card-header text-center text-uppercase">Contactez nous</div>
+                    <form class="mx-auto" action="{% url 'welcome:contact' user_id=user.id %}" method="post">
+                        {% csrf_token %}
+                        {% bootstrap_form form layout="floating" %}
+                        <div class="pad">
+                            <button id="submit" type="submit" class="message btn btn-outline-warning my-2 my-sm-0">
+                                Envoyer
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-    {% endblock %}
+    </section>
 </div>
+{% endblock %}
+
 

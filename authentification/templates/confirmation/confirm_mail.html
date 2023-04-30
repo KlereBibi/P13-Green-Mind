@@ -3,19 +3,22 @@
 {% load static %}
 
 {% block content %}
-<div class="background">
-    <div class="displayed">
-        <div class="padForm">
-            <div class="card text-center bg-success backgroundCard" style="width: 25rem">
-                <div class="card-header text-center text-uppercase"><p> Merci </p></div>
-                <div id="confirmation_text" class="card-body text-white text-center">Un courriel vous a été envoyé.</br></div>
-                 <div id="confirmation_text2" class="card-body text-white text-center">    Veuillez confirmer votre adresse mail pour compléter votre
-                    enregistrement.</div>
+<div class="bg-image" style="background-image: url({% static '/assets/img/home.jpg' %});">
+    <section class="page-section bg-light.bg-gradient" id="services">
+        <div class="displayed">
+            <div class="padForm">
+                <div class="card text-center bg-success backgroundCard" style="width: 25rem">
+                    <div class="card-header text-center text-uppercase"><p> Merci </p></div>
+                    <div id="confirmation_text" class="card-body text-white text-center">Un courriel vous a été
+                        envoyé.</br></div>
+                    <div id="confirmation_text2" class="card-body text-white text-center"> Veuillez confirmer votre
+                        adresse mail
+                        pour compléter votre
+                        enregistrement.
+                    </div>
                 </div>
-
-                <div class="P-5"></div>
             </div>
         </div>
-    </div>
-    {% endblock %}
+    </section>
 </div>
+{% endblock %}

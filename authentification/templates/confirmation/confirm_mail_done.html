@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 {% extends 'main.html' %}
 {% load static %}
-{% load django_bootstrap5 %}
 
 {% block content %}
-<div class="background">
-    <div class="displayed">
-        <div class="padForm">
-            <div class="card text-center bg-success backgroundCard" style="width: 25rem">
-                <div class="card-header text-center text-uppercase">Validé!</div>
-                <div class="card-header text-center text-white">Merci pour la confirmation de votre email.</br>
-                    Maintenant vous pouvez vous connecter.
-                    <div class="pad">
-                        <a href="{% url 'authentification:login' %}"
-                           class="message btn btn-outline-warning my-2 my-sm-0">
-                            Login</a>
+<div class="bg-image" style="background-image: url({% static '/assets/img/home.jpg' %});">
+    <section class="page-section bg-light.bg-gradient" id="services">
+        <div class="displayed">
+            <div class="padForm">
+                <div class="card text-center bg-success backgroundCard" style="width: 25rem">
+                    <div class="card-header text-center text-uppercase">Validé!</div>
+                    <div class="card-header text-center text-white">Merci pour la confirmation de votre email.</br>
+                        Maintenant vous pouvez vous connecter.
+                        <div class="pad">
+                            <a href="{% url 'authentification:login' %}"
+                               class="message btn btn-outline-warning my-2 my-sm-0">
+                                Login</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="P-5"></div>
-    {% endblock %}
+    </section>
 </div>
+{% endblock %}
