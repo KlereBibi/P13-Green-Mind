@@ -15,6 +15,7 @@ class Command(BaseCommand):
         for element in plante_user:
             date_reminder = element.plante
             if element.rappel is True and date.today() >= element.date_futur:
+                dateT=date.today()
                 if not element.name:
                     mail_subject = "Rappel d'arrosage pour votre plante."
                 else:

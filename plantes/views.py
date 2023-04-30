@@ -12,6 +12,8 @@ from plantes.models import Plante, UserPlante, Rappel
 
 class UserTexte:
 
+    """class to initialize user text"""
+
     def __init__(self, name, extrait, url=None, picture=None):
         self.name = name
         self.extrait = extrait
@@ -20,6 +22,8 @@ class UserTexte:
 
 
 def apiwikipicture(title, page_id):
+
+    """class to return the wikipedia image of the article"""
 
     img = requests.get("http://fr.wikipedia.org/w/api.php?action=query&prop=extracts|inf&inprop=url&explaintext=true&exsentences=2&exlimit=1&format=json&titles="f"{title}&prop=pageimages")
 
@@ -42,6 +46,9 @@ def apiwikipicture(title, page_id):
 
 @require_http_methods(['POST'])
 def find_plante(request):
+
+    """class allowing to find and find information in wikipedia"""
+
     if request.method == 'POST':
         form = SearchPlante(request.POST)
         if form.is_valid():
@@ -95,6 +102,9 @@ def find_plante(request):
 
 
 def error_form(request):
+
+    """class allowing to return a server error"""
+
     title = "Erreur serveur"
     content = "La requête ne peut aboutir, veuillez essayer ultérieurement"
     image = "https://thumbs.dreamstime.com/b/eagle-portrait-1649198.jpg"
@@ -104,26 +114,40 @@ def error_form(request):
 
 
 def plante(request):
+
+    """class to return the plants available in the database"""
+
     plante_db = Plante.objects.all()
     search_form = SearchPlante()
     return render(request, "plantes/plante.html", context={"all_plantes_db": plante_db, "search_form":search_form})
 
 
 def explain_plante(request, plante_id):
+
+    """class to return a specific plant"""
+
     plante_explain = Plante.objects.get(pk=plante_id)
     save_form=SavePlante()
     search_form=SearchPlante()
-    return render(request, "plantes/planteExplain.html", context={"plante": plante_explain, "save_form":save_form, "search_form":search_form})
+    return render(request, "plantes/planteExplain.html",
+                  context={"plante": plante_explain, "save_form":save_form, "search_form":search_form})
 
 
 def my_plante(request):
+
+    """class to return a plant of the logged in user"""
+
     plante_user_db = UserPlante.objects.all()
     search_form = SearchPlante()
-    return render(request, "plantes/myPlantes.html", context={"all_plantes_db": plante_user_db, "search_form":search_form})
+    return render(request, "plantes/myPlantes.html",
+                  context={"all_plantes_db": plante_user_db, "search_form":search_form})
 
 
 @login_required
 def user_plante(request, plante_id):
+
+    """class allowing to register a plant, its name and reminder"""
+
     if request.method == 'POST':
         form = SavePlante(request.POST)
         search_form = SearchPlante()
@@ -133,21 +157,25 @@ def user_plante(request, plante_id):
             plante_save = []
             try:
                 plante = Plante.objects.get(pk=plante_id)
-                plante_save.append(UserPlante(name=name_plante['name_plante_user'], rappel=name_plante['reminder'], plante=plante, user=request.user))
-                plante_save = UserPlante.objects.bulk_create(plante_save)
-                for element in plante_save:
-                    id_plante = element.id
-                plante_user = UserPlante.objects.get(id=id_plante)
                 if name_plante['reminder'] is True:
-                    endate= date.today() + timedelta(days=plante.arrosage)
-                    plante_user.date_futur = endate
-                    plante_user.save()
-                return render(request, "plantes/planteSave.html", context={"plante": plante, "save_form":save_form, "search_form": search_form})
+                    endate = date.today() + timedelta(days=plante.arrosage)
+                    plante_save.append(UserPlante(name=name_plante['name_plante_user'],
+                                                    rappel=name_plante['reminder'], date_futur=endate,
+                                                    plante=plante, user=request.user))
+                    UserPlante.objects.bulk_create(plante_save)
+                else:
+                    plante_save.append(UserPlante(name=name_plante['name_plante_user'],
+                                                  rappel=name_plante['reminder'],
+                                                  plante=plante, user=request.user))
+                    UserPlante.objects.bulk_create(plante_save)
+                return render(request, "plantes/planteSave.html",
+                              context={"plante": plante, "save_form":save_form, "search_form": search_form})
             except IntegrityError:
                 plante = Plante.objects.get(pk=plante_id)
-                return render(request, "plantes/planteSave.html", context={"plante": False, "plante_i":plante, "save_form":save_form, "search_form": search_form})
+                return render(request, "plantes/planteSave.html",
+                              context={"plante": False, "plante_i":plante, "save_form":save_form, "search_form": search_form})
         else:
-            error_form()
+            error_form(request)
     else:
         form = SavePlante()
         return render(request, 'plantes/planteSave.html', {'form': form})
@@ -155,6 +183,9 @@ def user_plante(request, plante_id):
 
 @require_http_methods(['POST'])
 def search_plante_db(request):
+
+    """class to search for a plant in the database"""
+
     if request.method == 'POST':
         form = SearchPlante(request.POST)
         if form.is_valid():
@@ -166,18 +197,24 @@ def search_plante_db(request):
                 plante_db = None
             return render(request, "plantes/find_plante_db.html", context={"plante": plante_db})
         else: 
-            error_form()
+            error_form(request)
     else:
         search_form = SearchPlante()
         return render(request, "plantes/plante.html", context={"search_form": search_form})
 
 
 def delete(request, plante_user_id):
+
+    """class for deleting a plant from the database"""
+
     UserPlante.objects.filter(id=plante_user_id).delete()
     return redirect("plantes:myPlante")
 
 
 def reminder_change(request, plante_user_id):
+
+    """class to enable/disable the reminder"""
+
     plante_user = UserPlante.objects.get(id=plante_user_id)
     if plante_user.rappel is False:
         plante_user.rappel = True

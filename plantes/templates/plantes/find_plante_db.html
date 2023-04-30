@@ -5,55 +5,57 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
-
-<div class="displayed">
-    {% if plante %}
-    <div class="text-center font-weight-bold">
-        <p class="titre titrePage"> Ce que nous avons trouvé:</p>
-    </div>
-    <div class="pad">
-        <div class="card text-white bg-success d-flex justify-content-between" style="max-width: 25rem;">
-            <div class="card-header text-center">
-                <div class="displayedForm">
-                    <div class="pos">
-                        <img src="{{plante.picture}}" alt="Card image cap" class="picture">
+<div class="bg-image" style="background-image: url({% static '/assets/image/feuille.jpg' %});">
+    <section class="page-section bg-light.bg-gradient" id="services">
+        {% if plante %}
+        <div class="text-center text-white font-weight-bold">
+            <p class="titre"> Ce que nous avons trouvé:</p>
+        </div>
+        <div class="displayed">
+            <div class="card text-white bg-success d-flex justify-content-between" style="max-width: 25rem;">
+                <div class="card-header text-center">
+                    <div class="displayedForm">
+                        <div class="pos">
+                            <img src="{{plante.picture}}" alt="Card image cap" class="picture">
+                        </div>
                     </div>
                 </div>
+                <div class="card-header text-center">Nom: {{ plante.name }}</div>
+                <div class="card-body">
+                    <p class="card-text text-center">Entretien: {{ plante.entretien }}</p>
+                    <p class="card-text text-center">Exposition: {{ plante.exposition }}</p>
+                </div>
+                <a href="{% url 'plantes:explainPlante' plante_id=plante.id %}"
+                   class="btn btn-primary mx-auto col-10 ">
+                    En savoir plus </a>
             </div>
-            <div class="card-body">
-                <p class="card-text text-center">Entretien: {{ plante.entretien }}</p>
-                <p class="card-text text-center">Exposition: {{ plante.exposition }}</p>
-            </div>
-            <a href="{% url 'plantes:explainPlante' plante_id=plante.id %}" class="btn btn-primary mx-auto col-10 ">
-                En savoir plus </a>
         </div>
-    </div>
 
-    {% else %}
-    <div class="padForm">
-        <div class="card text-white bg-success d-flex justify-content-between" style="max-width: 25rem;">
-            <div class="card-header text-center">
-                <div class="displayedForm">
-                    <div class="pos">
-                        <img src="{% static '/assets/image/livre.jpg' %}"
-                             style="img-fluid. max-width: 100% height: auto"
-                             alt="Card image cap" class="picture">
+        {% else %}
+        <div class="displayed">
+            <div class="card text-white bg-success d-flex justify-content-between" style="max-width: 25rem;">
+                <div class="card-header text-center">
+                    <div class="displayedForm">
+                        <div class="pos">
+                            <img src="{% static '/assets/image/livre.jpg' %}"
+                                 style="img-fluid. max-width: 100% height: auto"
+                                 alt="Card image cap" class="picture">
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="card-header text-center text-info">Aucun résultat trouvé</div>
-            <div class="card-header text-center">
-                <a href="{% url 'plantes:allPlante'%}" class="message btn btn-outline-warning my-2 my-sm-0">
-                    Retour</a></div>
-            <div class="text-center text-white">
-                Nous n'avons trouvé aucun produit correspondant à votre recherche.</br>
-                Veuillez reformuler ou essayer à nouveau prochainement.</br>
-                Nous poursuivons nos recherches afin d'enrichir notre base de données.
+                <div class="card-header text-center text-info">Aucun résultat trouvé</div>
+                <div class="card-header text-center">
+                    <a href="{% url 'plantes:allPlante'%}" class="message btn btn-outline-warning my-2 my-sm-0">
+                        Retour</a></div>
+                <div class="text-center text-white">
+                    Nous n'avons trouvé aucun produit correspondant à votre recherche.</br>
+                    Veuillez reformuler ou essayer à nouveau prochainement.</br>
+                    Nous poursuivons nos recherches afin d'enrichir notre base de données.
+                </div>
             </div>
         </div>
-    </div>
+
+        {% endif %}
+    </section>
 </div>
-{% endif %}
-
 {% endblock content %}

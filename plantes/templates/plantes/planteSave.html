@@ -5,80 +5,85 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
-
-<div class="displayed">
-    <div class="padForm">
-        {% if plante %}
-        <div class="card text-white bg-success d-flex justify-content-between" style="max-width: 25rem;">
-            <div class="card-header text-center">
-                <div class="displayedForm">
-                    <div class="pos">
-                        <img src="{{plante.picture}}" alt="Card image cap" class="picture">
+<div class="bg-image" style="background-image: url({% static '/assets/image/feuille.jpg' %});">
+    <section class="page-section bg-light.bg-gradient" id="services">
+        <div class="displayed">
+            <div class="padForm">
+                {% if plante %}
+                <div class="card text-white bg-success d-flex justify-content-between" style="max-width: 25rem;">
+                    <div class="card-header text-center">
+                        <div class="displayedForm">
+                            <div class="pos">
+                                <img src="{{plante.picture}}" alt="Card image cap" class="picture">
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="card-header text-center">{{ plante.name }}</div>
-            <div class="card-header text-center text-info">Votre plante a bien été sauvegardé
-                <div class="fa fa-check-square text-warning" style="font-size:24px"></div>
-                </br>
-                <a href="{% url 'plantes:myPlante'%}" class="btn btn-primary mx-auto col-100">Voir mes plantes</a>
-            </div>
-            <div class="card-body">
-                <p class="card-text text-center">Entretien: {{ plante.entretien }}</p>
-                <p class="card-text text-center">Exposition: {{ plante.exposition }}</p>
-                <p class="card-text text-center">Arrosage: tous les {{ plante.arrosage }} jour(s)</p>
-                <p class="card-text text-center">{{ plante.resume }}</p>
-                <p class="card-text text-center"> Apprenez en plus sur <a href="{{ plante.url }}">le site de notre
-                    source</a></br></p>
-                <p class="card-text text-center"></p>
-            </div>
-        </div>
-        {% else %}
-        <div class="card text-white bg-success d-flex justify-content-between" style="max-width: 25rem;">
-            <div class="card-header text-center">
-                <div class="displayedForm">
-                    <div class="pos">
-                        <img src="{{plante_i.picture}}" alt="Card" class="picture">
+                    <div class="card-header text-center">{{ plante.name }}</div>
+                    <div class="card-header text-center text-info">Votre plante a bien été sauvegardé
+                        <div class="fa fa-check-square text-warning" style="font-size:24px"></div>
+                        </br>
+                        <a href="{% url 'plantes:myPlante'%}" class="btn btn-primary mx-auto col-100">Voir mes
+                            plantes</a>
                     </div>
-                </div>
-            </div>
-            <div class="card-header text-center">{{ plante_i.name }}</div>
-            <div class="card-header text-center text-info">Ce nom est déjà enregistré pour une plante de votre
-                compte.
-                <div class="fa-solid fa-triangle-exclamation text-warning" style="font-size:24px"></div>
-                </br>
-                <a href="{% url 'plantes:myPlante'%}" class="btn btn-primary mx-auto col-100">Voir mes
-                    plantes</a>
-            </div>
-            <div class="card-body">
-                <p class="card-text text-center">Entretien: {{ plante_i.entretien }}</p>
-                <p class="card-text text-center">Exposition: {{ plante_i.exposition }}</p>
-                <p class="card-text text-center">Arrosage: tous les {{ plante_i.arrosage }} jour(s)</p>
-                <p class="card-text text-center">{{ plante_i.resume }}</p>
-                <p class="card-text text-center"> Apprenez en plus sur
-                    <a href="{{ plante.url }}">le site de notre source</a></br></p>
-                <p class="card-text text-center"></p>
-                {% if user.is_authenticated %}
-                <div class="card-header text-center">
-                    <p class="card-text text-black">Vous souhaitez l'ajouter à vos plantes ?</p>
-                </div>
-                <div class="pad pos">
-                    <form class="mx-auto text-black taille form" method="POST"
-                          action="{% url 'plantes:userPlante' plante_id=plante_i.id %}">
-                        {% csrf_token %}
-                        {% bootstrap_form save_form layout="floating"%}
-                        <input class="message btn btn-outline-warning my-2 my-sm-0" type="submit"
-                               value="Sauvegarder">
-                    </form>
+                    <div class="card-body">
+                        <p class="card-text text-center">Entretien: {{ plante.entretien }}</p>
+                        <p class="card-text text-center">Exposition: {{ plante.exposition }}</p>
+                        <p class="card-text text-center">Arrosage: tous les {{ plante.arrosage }} jour(s)</p>
+                        <p class="card-text text-center">{{ plante.resume }}</p>
+                        <p class="card-text text-center"> Apprenez en plus sur <a href="{{ plante.url }}">le site de
+                            notre
+                            source</a></br></p>
+                        <p class="card-text text-center"></p>
+                    </div>
                 </div>
                 {% else %}
-                <a href="{% url 'authentification:login' %}"
-                   class="btn btn-primary mx-auto col-10 ">Connectez-vous </a>
+                <div class="card text-white bg-success d-flex justify-content-between" style="max-width: 25rem;">
+                    <div class="card-header text-center">
+                        <div class="displayedForm">
+                            <div class="pos">
+                                <img src="{{plante_i.picture}}" alt="Card" class="picture">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-header text-center">{{ plante_i.name }}</div>
+                    <div class="card-header text-center text-info">Ce nom est déjà enregistré pour une plante de votre
+                        compte.
+                        <div class="fa-solid fa-triangle-exclamation text-warning" style="font-size:24px"></div>
+                        </br>
+                        <a href="{% url 'plantes:myPlante'%}" class="btn btn-primary mx-auto col-100">Voir mes
+                            plantes</a>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text text-center">Entretien: {{ plante_i.entretien }}</p>
+                        <p class="card-text text-center">Exposition: {{ plante_i.exposition }}</p>
+                        <p class="card-text text-center">Arrosage: tous les {{ plante_i.arrosage }} jour(s)</p>
+                        <p class="card-text text-center">{{ plante_i.resume }}</p>
+                        <p class="card-text text-center"> Apprenez en plus sur
+                            <a href="{{ plante.url }}">le site de notre source</a></br></p>
+                        <p class="card-text text-center"></p>
+                        {% if user.is_authenticated %}
+                        <div class="card-header text-center">
+                            <p class="card-text text-black">Vous souhaitez l'ajouter à vos plantes ?</p>
+                        </div>
+                        <div class="pad pos">
+                            <form class="mx-auto text-black taille form" method="POST"
+                                  action="{% url 'plantes:userPlante' plante_id=plante_i.id %}">
+                                {% csrf_token %}
+                                {% bootstrap_form save_form layout="floating"%}
+                                <input class="message btn btn-outline-warning my-2 my-sm-0" type="submit"
+                                       value="Sauvegarder">
+                            </form>
+                        </div>
+                        {% else %}
+                        <a href="{% url 'authentification:login' %}"
+                           class="btn btn-primary mx-auto col-10 ">Connectez-vous </a>
+                        {% endif %}
+                    </div>
+                </div>
                 {% endif %}
             </div>
         </div>
-        {% endif %}
-    </div>
+    </section>
 </div>
 {% endblock content %}
