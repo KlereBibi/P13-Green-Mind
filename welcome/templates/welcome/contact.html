@@ -10,7 +10,7 @@
         <div class="displayed">
             <div class="padForm">
                 <div class="card text-center bg-success backgroundCard" style="width: 25rem;">
-                    <div class="card-header text-center text-uppercase">Contactez nous</div>
+                    <div class="card-header text-center text-uppercase">Contactez-nous</div>
                     <form class="mx-auto" action="{% url 'welcome:contact' user_id=user.id %}" method="post">
                         {% csrf_token %}
                         {% bootstrap_form form layout="floating" %}

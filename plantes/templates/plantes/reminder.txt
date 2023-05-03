@@ -5,7 +5,7 @@
 
     Conseil:
     Avant d'arroser votre plante, vérifier que la terre est sèche.
-    Si la terre est encore très humide, il est conseillé d'attendre que la terre sèche d'avantage.
+    Si la terre est encore très humide, il est conseillé d'attendre que la terre sèche davantage.
     Si cette situation survient à chaque arrosage, vous pouvez nous en faire par grâce à notre formulaire {{contact}} afin que nous adaptions le temps d'arrosage à votre plante.
 
     En vous souhaitant une agréable journée,

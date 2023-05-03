@@ -2,17 +2,22 @@
 <html lang="fr">
 {% extends 'main.html' %}
 {% load static %}
-{% load django_bootstrap5 %}
 
 {% block content %}
-<div class="displayed">
-    <div class="padForm">
-        <div class="text-center">
-            Votre demande a été envoyé ! </br>
-            Elle sera traitée dans les plus brefs délais.</br>
-            Merci
+<div class="bg-image" style="background-image: url({% static '/assets/img/margherite.jpg' %});">
+    <section class="page-section bg-light.bg-gradient" id="services">
+        <div class="displayed">
+            <div class="padForm">
+                <div class="card text-center bg-success backgroundCard" style="width: 25rem;">
+                    <div class="card-header text-center text-uppercase text-white">Votre demande a été envoyé ! </br></div>
+                    <div class="card-body text-center text-white">
+                        Elle sera traitée dans les plus brefs délais.</br>
+                        Merci.
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 </div>
 {% endblock %}
-</html>
+
