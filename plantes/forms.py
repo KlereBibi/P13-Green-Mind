@@ -7,7 +7,7 @@ class SearchPlante(forms.Form):
 
     """"class to initialize the search form to find plante"""
 
-    plante = forms.CharField(label="Ex: Sansevieria", max_length=20, required=True, strip=False)
+    plante = forms.CharField(label="Ex: sansevieria", max_length=20, required=True, strip=False)
 
 
 class SavePlante(forms.Form):

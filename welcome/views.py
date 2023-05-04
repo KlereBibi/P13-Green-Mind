@@ -31,15 +31,15 @@ def contact(request):
 
 
 @login_required
-def answer_contact(request, user_id):
+def answer_contact(request):
 
     """function that sends the email containing the information returned by the contact form"""
 
     if request.method == 'POST':
         form = ContactForm(request.POST)
+        user = request.user
         if form.is_valid():
             contact = form.cleaned_data
-            user = User.objects.get(id=user_id)
             mail_subject = "Un utilisateur a une question."
             message = render_to_string('welcome/contact.txt', {
                 'prenom':user.first_name,
