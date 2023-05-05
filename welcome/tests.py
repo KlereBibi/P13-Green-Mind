@@ -46,9 +46,8 @@ class TestViews(TestCase):
     def test_contact_send(self):
 
           c = Client()
-          userName = User.objects.create(username='Claire', first_name='TheBest', last_name='OfTheWorld', email='claire@gmail.com')
           c.post('/auth/login/', {'username': 'test', 'password': 'test@.test'})
-          response = c.post("/contact/{}".format(userName.id), data={'subject': 'something', 'text': 'something'})
+          response = c.post("/contact/confirm", data={'subject': 'something', 'text': 'something'})
           self.assertEqual(response.status_code, 200)
           self.assertEqual(len(mail.outbox), 1)
           self.assertTemplateUsed(response, 'welcome/contactEnvoye.html')
