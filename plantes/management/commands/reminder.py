@@ -16,15 +16,20 @@ class Command(BaseCommand):
             date_reminder = element.plante
             if element.rappel is True and date.today() >= element.date_futur:
                 if not element.name:
-                    mail_subject = "Rappel d'arrosage pour votre plante."
+                    mail_subject = "Rappel d'arrosage pour "f"{element.plante.name}."
+                    message = render_to_string('plantes/reminder.txt', {
+                        'user': element.user.username,
+                        'contact': "Contact",
+                        'planteName': element.plante.name,
+                    })
                 else:
                     mail_subject = "Rappel d'arrosage pour "f"{element.name}."
-                message = render_to_string('plantes/reminder.txt', {
-                    'user': element.user.username,
-                    'contact': "Contact",
-                    'planteName': element.name,
-                    'planteType': element.plante.type,
-                 })
+                    message = render_to_string('plantes/reminder.txt', {
+                        'user': element.user.username,
+                        'contact': "Contact",
+                        'planteName': element.name,
+                        'planteType': element.plante.type,
+                     })
                 email = EmailMessage(
                      mail_subject, message, to=[element.user.email]
                  )
