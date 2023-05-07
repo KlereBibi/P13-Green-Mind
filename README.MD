@@ -29,12 +29,13 @@ Initialisez votre environnement virtuel:
 
 ## Démarrage
 * Créez un fichier .env avec vos propre variable d'environnement local à la racine du projet
-* Exécutez python manage.py migrate
-* Exécutez python manage.py makemigration
-* Exécutez python manage.py collectstatic
-* Exécutez python manage.py dbfull
-* Exécutez python manage.py runserver pour lancer l'application
+* Exécutez *python manage.py migrate*
+* Exécutez *python manage.py makemigration*
+* Exécutez *python manage.py collectstatic*
+* Exécutez *python manage.py plantesdb*
+* Exécutez *python manage.py runserver* pour lancer l'application
 * Consultez votre application sur votre adresse ip
+* La commande personnalisée pour envoyer les rappels est: *python manage.py reminder*
 
 ## Fabriqué avec
 * PyCharm - Editeur de texte
