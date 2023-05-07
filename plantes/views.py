@@ -40,7 +40,7 @@ def apiwikipicture(title, page_id):
                     .get("thumbnail")
                     .get("source",  "")}
         except AttributeError:
-            picture = {"picture":"https://thumbs.dreamstime.com/b/dog-reading-newspaper-cool-funny-jack-russell-magazine-125398832.jpg"}
+            picture = {"picture":"https://cdn.pixabay.com/photo/2012/06/19/10/32/owl-50267_1280.jpg"}
         return picture
 
 
@@ -91,7 +91,7 @@ def find_plante(request):
                     text = UserTexte("Nous n'avons pas trouvé en lien avec la recherche "f"{plante_lower}.",
                                       "Merci de reformuler votre demande.",
                                       "https://fr.wikipedia.org/wiki/Wikip%C3%A9dia:Accueil_principal",
-                                      "https://thumbs.dreamstime.com/b/eagle-portrait-1649198.jpg", )
+                                      "https://cdn.pixabay.com/photo/2012/06/19/10/32/owl-50267_1280.jpg", )
                 return render(request, "plantes/find_plante.html", context={"texte": text})
             else:
                 error_form()

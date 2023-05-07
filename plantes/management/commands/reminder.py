@@ -14,7 +14,7 @@ class Command(BaseCommand):
         email_send = []
         for element in plante_user:
             date_reminder = element.plante
-            if element.rappel is True and date.today() >= element.date_futur:
+            if element.rappel is True and (date.today() + timedelta(days=2)) >= element.date_futur:
                 if not element.name:
                     mail_subject = "Rappel d'arrosage pour "f"{element.plante.name}."
                     message = render_to_string('plantes/reminder.txt', {
@@ -35,7 +35,7 @@ class Command(BaseCommand):
                  )
                 email.send()
                 email_send.append(Rappel(userplante=element))
-                element.date_futur=date.today() + timedelta(days=date_reminder.arrosage)
+                element.date_futur=date.today() + timedelta(days=4)
                 element.save()
 
         Rappel.objects.bulk_create(email_send)
